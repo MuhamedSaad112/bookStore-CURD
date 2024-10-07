@@ -2,6 +2,7 @@ package com.global.book.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.global.book.base.BaseEntity;
 
 import jakarta.persistence.CascadeType;
@@ -14,10 +15,11 @@ import jakarta.validation.constraints.NotNull;
 public class Cart extends BaseEntity<Long> {
 
 	@NotNull
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	private User user;
 
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cart", cascade = { CascadeType.ALL })
+	@JsonManagedReference
 	private List<CartItem> items;
 
 	public Cart(@NotNull User user) {

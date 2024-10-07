@@ -40,7 +40,7 @@ public class ShippingAddressController {
 	@PutMapping("")
 	public ShippingAddress updateShippingAddress(@RequestBody @Valid ShippingAddress address) {
 
-		return addressService.updata(address);
+		return addressService.update(address);
 	}
 
 	@DeleteMapping("/{id}")

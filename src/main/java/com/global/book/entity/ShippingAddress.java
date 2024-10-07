@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 public class ShippingAddress extends BaseEntity<Long> {
 
 	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private User user;
 	@NotBlank
 	private String address;

@@ -36,7 +36,7 @@ public class Book extends BaseEntity<Long> {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Author author;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
 	@NotNull
 	@JoinTable(name = "sec_books_categories", joinColumns = @JoinColumn(name = "books_id"), inverseJoinColumns = @JoinColumn(name = "categories_id"))
 	Set<Categories> categories = new HashSet<>();

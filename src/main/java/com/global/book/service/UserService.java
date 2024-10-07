@@ -36,7 +36,7 @@ public class UserService extends BaseService<User, Long> {
 		dem.setUserName(entity.getUserName());
 		dem.setEmail(entity.getEmail());
 		dem.setPassword(entity.getPassword());
-
+		dem.setRoles(entity.getRoles());
 		return userRepo.save(dem);
 	}
 

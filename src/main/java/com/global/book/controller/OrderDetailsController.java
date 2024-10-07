@@ -17,7 +17,7 @@ import com.global.book.service.OrderDetailsService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/OrderDetails")
+@RequestMapping("/api/Order_details")
 @Validated
 public class OrderDetailsController {
 
@@ -52,7 +52,7 @@ public class OrderDetailsController {
 	}
 
 	@GetMapping("/exist/{id}")
-	public boolean existsById(@Valid Long id) {
+	public boolean existsById(@PathVariable Long id) {
 		return detailsService.existsById(id);
 
 	}

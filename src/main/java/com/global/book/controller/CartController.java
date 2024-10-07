@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.global.book.entity.Cart;
@@ -47,30 +47,20 @@ public class CartController {
 	@PutMapping("")
 	public Cart update(@RequestBody @Valid Cart entity) {
 
-		Cart dem = findById(entity.getId());
-		dem.setItems(entity.getItems());
-		dem.setUser(entity.getUser());
-
-		return cartService.update(dem);
+		return cartService.update(entity);
 
 	}
 
 	@PostMapping("/items")
-	public CartItem addItemToCart(@RequestAttribute Long userId, @RequestAttribute Long bookId,
-			@RequestAttribute Long quantity) {
+	public CartItem addItemToCart(@RequestParam Long userId, @RequestParam Long bookId,
+			@RequestParam @Min(1) Long quantity) {
 
 		return cartService.addItemToCart(userId, bookId, quantity);
 	}
 
-	@PutMapping("/items")
-	public CartItem updateCartItem(@RequestAttribute Long bookId, @RequestAttribute @Min(1) Long quantity) {
-
-		return cartService.updateCartItem(bookId, quantity);
-	}
-
-	@DeleteMapping("/items")
-	void deleteCartItem(@RequestAttribute Long bookId) {
-		cartService.deleteCartItem(bookId);
+	@DeleteMapping("/items/{ItemId}")
+	void deleteCartItem(@PathVariable Long ItemId) {
+		cartService.deleteCartItem(ItemId);
 
 	}
 

@@ -15,7 +15,7 @@ public class Order extends BaseEntity<Long> {
 	@NotNull
 	private String status;
 	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
 	private User user;
 
 	public String getStatus() {

@@ -41,7 +41,6 @@ public class CartService extends BaseService<Cart, Long> {
 	public Cart update(Cart entity) {
 
 		Cart dem = findById(entity.getId());
-		dem.setItems(entity.getItems());
 		dem.setUser(entity.getUser());
 
 		return cartRepo.save(dem);
@@ -62,22 +61,13 @@ public class CartService extends BaseService<Cart, Long> {
 		cartItem.setCart(cart);
 		cartItem.setBook(book);
 		cartItem.setQuantity(quantity);
-		cartItemService.insert(cartItem);
-		return cartItem;
+		return cartItemService.insert(cartItem);
+
 	}
 
-	public CartItem updateCartItem(Long bookId, Long quantity) {
-		CartItem cartItem = cartItemService.findByBookId(bookId);
+	public void deleteCartItem(Long ItemId) {
+		CartItem cartItem = cartItemService.findById(ItemId);
 
-		cartItem.setQuantity(quantity);
-
-		cartItemService.update(cartItem);
-
-		return cartItem;
-	}
-
-	public void deleteCartItem(Long bookId) {
-		CartItem cartItem = cartItemService.findByBookId(bookId);
 		cartItemService.delete(cartItem);
 
 	}

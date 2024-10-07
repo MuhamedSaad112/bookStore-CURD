@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.global.book.base.BaseService;
 import com.global.book.entity.Order;
+import com.global.book.entity.User;
 import com.global.book.repository.OrderRepo;
 
 @Service
@@ -14,6 +15,9 @@ public class OrderService extends BaseService<Order, Long> {
 
 	@Autowired
 	private OrderRepo orderRepo;
+
+	@Autowired
+	private UserService userService;
 
 	public Order findById(Long id) {
 
@@ -26,6 +30,11 @@ public class OrderService extends BaseService<Order, Long> {
 	}
 
 	public Order insert(Order entity) {
+
+		if (entity.getUser() != null && entity.getUser().getId() != null) {
+			User user = userService.findById(entity.getUser().getId());
+			entity.setUser(user);
+		}
 		return orderRepo.save(entity);
 	}
 

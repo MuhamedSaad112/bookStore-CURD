@@ -9,4 +9,5 @@ import com.global.book.entity.CartItem;
 public interface CartItemRepo extends BaseRepository<CartItem, Long> {
 
 	CartItem findByBookId(Long bookId);
+	
 }

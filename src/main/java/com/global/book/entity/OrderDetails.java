@@ -11,10 +11,10 @@ import jakarta.validation.constraints.NotNull;
 public class OrderDetails extends BaseEntity<Long> {
 
 	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Order order;
 	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Book book;
 	@NotNull
 	private Long quantity;

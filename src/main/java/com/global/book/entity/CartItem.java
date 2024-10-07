@@ -1,5 +1,6 @@
 package com.global.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.global.book.base.BaseEntity;
 
 import jakarta.persistence.CascadeType;
@@ -14,9 +15,10 @@ public class CartItem extends BaseEntity<Long> {
 
 	@NotNull
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Cart cart;
 	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Book book;
 	@NotNull
 	private Long quantity;

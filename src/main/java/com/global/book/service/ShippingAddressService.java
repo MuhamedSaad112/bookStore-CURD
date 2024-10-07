@@ -13,51 +13,30 @@ import com.global.book.repository.ShippingAddressRepo;
 public class ShippingAddressService extends BaseService<ShippingAddress, Long> {
 
 	@Autowired
-	private ShippingAddressRepo addressService;
+	private ShippingAddressRepo addressRepo;
 
 	public List<ShippingAddress> findByAddressByUserId(Long userId) {
 
-		return addressService.findByAddressUserId(userId);
-	}
-
-	public ShippingAddress findById(Long id) {
-
-		return addressService.findById(id).get();
-	}
-
-	public List<ShippingAddress> findAll() {
-
-		return addressService.findAll();
+		return addressRepo.findByAddressUserId(userId);
 	}
 
 	public ShippingAddress insert(ShippingAddress entity) {
-		return addressService.save(entity);
+		return addressRepo.save(entity);
 	}
 
-	public ShippingAddress updata(ShippingAddress entity) {
+	public ShippingAddress update(ShippingAddress entity) {
 
 		ShippingAddress dem = findById(entity.getId());
 
 		dem.setAddress(entity.getAddress());
 		dem.setCountry(entity.getCountry());
 		dem.setPostCode(entity.getPostCode());
-		dem.setUser(entity.getUser());
 
-		return addressService.save(dem);
+		return addressRepo.save(dem);
 	}
 
 	public void delete(ShippingAddress entity) {
-		addressService.delete(entity);
-	}
-
-	public boolean existsById(Long id) {
-		return addressService.existsById(id);
-
-	}
-
-	public Long countAll() {
-		return addressService.count();
-
+		addressRepo.delete(entity);
 	}
 
 }
