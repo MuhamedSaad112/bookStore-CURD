@@ -133,9 +133,4 @@ mvn test
 Mohamed Saad
 GitHub: [https://github.com/MuhamedSaad112](https://github.com/MuhamedSaad112)
 
-Project Link: [https://github.com/yourusername/bookstore-demo](https://github.com/yourusername/bookstore-demo)
-```
 
-## 💡 Additional Resources
-- [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
-- [Maven Documentation](https://maven.apache.org/guides/index.html)
